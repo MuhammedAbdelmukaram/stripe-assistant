@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Offer from "@/models/Offer";
+import Offer from "@/models/offer";
 
 // POST: Add a new offer
 export async function POST(request) {

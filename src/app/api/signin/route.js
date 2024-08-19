@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dbConnect from "@/lib/dbConnect";
-import UserProfile from "@/models/userModel";
+import UserProfile from "@/models/user";
 
 export async function POST(request) {
     await dbConnect();
