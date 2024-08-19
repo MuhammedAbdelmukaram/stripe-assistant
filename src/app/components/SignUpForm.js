@@ -1,6 +1,6 @@
 "use client";
-import React, {useEffect, useState} from 'react';
-import {useRouter, useSearchParams} from "next/navigation";
+import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SignUpForm = () => {
     const [username, setUsername] = useState("");
@@ -15,9 +15,12 @@ const SignUpForm = () => {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        const tokenParam = searchParams.get('token');
-        if (tokenParam) {
-            setToken(tokenParam);
+        if (typeof window !== "undefined") {
+            // Ensure this code runs only on the client
+            const tokenParam = searchParams.get('token');
+            if (tokenParam) {
+                setToken(tokenParam);
+            }
         }
     }, [searchParams]);
 
@@ -59,7 +62,7 @@ const SignUpForm = () => {
                 setError("");
 
                 await markTokenAsUsed(token, email);
-                // Redirect to admin panel
+                // Redirect to the download app page
                 router.push("/download-app");
             } else {
                 setError(data.message || "Failed to sign in. Please try again.");
@@ -71,7 +74,6 @@ const SignUpForm = () => {
             setSuccess("");
         }
     };
-
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 30 }}>
